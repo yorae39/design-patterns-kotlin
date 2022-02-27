@@ -1,0 +1,57 @@
+Objetivo: Permitir atualizações específicas em uma coleção de objetos de acordo com o tipo
+particular de cada objeto atualizado.
+Exemplo prático
+Estamos desenvolvendo um sistema bancário no qual os funcionários devem ser classificados de
+acordo com o cargo que eles possuem. Para modelar as diferenças e semelhanças relativas a cada
+cargo decidimos aplicar o conceito de herança na nossa modelagem.
+
+Organização - Padrão Visitor:
+O diagrama abaixo ilustra a organização desse padrão.
+                                                                                      +-----------------+
+                                                                                      | ConcreteVision1 |
+                                                                    +=================+-----------------+
++-------------+                        +------------------          |                 | visitElementA() |
+|   CLIENT    |----------------------> |     VISITOR     |          |                 | visitElementB() |
++-------------                         +-----------------+          |                 +-----------------+
+       |                               | visitElementA() |<=========+
+       |                               | visitElementB() |          |
+       |                               +-----------------+          |                 +-----------------+
+       |                                                            |                 | ConcreteVision2 |
+       |                                                            +=================+-----------------+
+       |                                                                              | visitElementA() |
+       |                                                                              | visitElementB() |
+       |            +-----------------+                                               +------------------
+       +----------> | ObjectStructure |
+                    +-----------------+
+                             /\
+                             \/
+                              |
+                              |                                             +------------------+
+                              |                                             | ConcreteElement1 |
+                              |                              +==============+------------------+
+                              |                              |              | accept(Visitor)  |
+                    +------------------+                     |              +------------------+
+                    |     Element      |                     |
+                    +------------------+<====================+
+                    | accept(Visitor)  |                     |
+                    +------------------+                     |              +------------------+
+                                                             |              | ConcreteElement2 |
+                                                             +==============+------------------+
+                                                                            | accept(Visitor)  |
+                                                                            +------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
