@@ -39,9 +39,9 @@ Conceitos de design patterns usando a linguagem kotlin
   
 ###
 ### Padrões implementados até o momento
-- [ ] Factory Method
-- [ ] Abstract Factory
-- [ ] Abstract Factory + Factory Method
+- [X] Factory Method
+- [X] Abstract Factory
+- [X] Abstract Factory + Factory Method
 - [ ] Builder
 - [ ] Prototype
 - [ ] Singleton
@@ -62,7 +62,7 @@ Conceitos de design patterns usando a linguagem kotlin
 - [ ] State
 - [ ] Strategy
 - [ ] Template Method
-- [x] Visitor
+- [X] Visitor
 
 ###
 ### 🛠 Tecnologias

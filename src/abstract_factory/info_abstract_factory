@@ -1,0 +1,104 @@
+Objetivo: Encapsular a escolha das classes concretas a serem utilizadas na criação dos objetos de
+diversas famílias.
+
+Estabelecimentos comerciais normalmente oferecem aos clientes diversas opções de pagamento.
+Por exemplo, clientes podem efetuar pagamentos com dinheiro, cheque, cartões de crédito ou dé-
+bito, entre outros.
+Pagamentos com cartões são realizados por meio de uma máquina de cartão, oferecida e insta-
+lada por empresas como Cielo e Redecard. Geralmente, essa máquina é capaz de lidar com cartões
+de diferentes bandeiras (como Visa e Mastercard).
+Nosso objetivo é programar essas máquinas, isto é, desenvolver uma aplicação capaz de se co-
+municar com as diferentes bandeiras e registrar pagamentos.
+No momento do pagamento, a máquina de cartão deve enviar as informações relativas a transa-
+ção (como valor e senha) para a bandeira correspondente ao cartão utilizado. Além disso, a máquina
+deve aguardar uma resposta de confirmação ou recusa do pagamento.
+
+Organização - Padrão Abstract Factory:
+O diagrama abaixo ilustra a organização desse padrão.
+
+                                                                                                                          +---------------+
+                                                                                                                          |     Client    |
+                                                                                                                          +---------------+
+                                                                                                                                  |
+                                                                                                                                  |
+ +------------------+                                                                                                             |
+ | AbstractFactory  |                                           <<use>>                                                 +---------------------+
+ +------------------+<--------------------------------------------------------------------------------------------------| AbstractFactoryImpl |
+ | createProductA() |                                                                                                   +---------------------+
+ | createProductB() |                                                                                                             |
+ +------------------+                                            +------------------+              <<use>>                        |
+          ^                                                      | AbstractProductA |<--------------------------------------------+
+          |                                                      +------------------+                                             |
+          |                                                               ^                                                       |
+          |     +------------------+                                      |                                                       |
+          |     | ConcreteFactory1 |                                      |                                                       |
+          |     +------------------+                                      |                                                       |
+          +-----| ConcreteProductA |                      +---------------------------------+                                     |
+          |     | ConcreteProductB |                      |                                 |                                     |
+          |     +------------------+                      |                                 |                                     |
+          |               |                      +--------------------+          +-------------------+                            |
+          |               +--------------------->| ConcreteProductA1  |          | ConcreteProductA2 |<---------------------------|---------+
+          |               |                      +--------------------+          +-------------------+                            |         |
+          |               |                                                                                                       |         |
+          |               |                                                                                                       |         |
+          |    <<create>> |                                      +-------------------+             <<use>>                        |         |
+          |               |                                      | AbstractProductB  |<-------------------------------------------+         |
+          |               |                                      +-------------------+                                                      |
+          |               |                                                 ^                                                               |
+          |               |                                                 |                                                               |
+          |               |                                                 |                                                               |
+          |               |                                                 |                                                               |
+          |               |                               +---------------------------------+                                               |
+          |               |                               |                                 |                                               |
+          |               |                               |                                 |                                               |
+          |               |                      +--------------------+         +-------------------+                                       |
+          |               +--------------------->| ConcreteProductB1  |         | ConcreteProductB2 |<--------------------------------------+
+          |                                      +--------------------+         +-------------------+                                       |
+          |                                                                                                                                 |
+          |     +------------------+                                                                                                        |
+          |     | ConcreteFactory2 |                                                                                                        |
+          |     +------------------+                                                                                                        |
+          +-----| ConcreteProductA |--------------------------------------------------------------------------------------------------------+
+                | ConcreteProductB |
+                +------------------+
+
+
+Os personagens desse padrão são:
+AbstractFactory ( FactoryCommunicator )
+    Interface que define as assinaturas dos métodos responsáveis pela criação dos objetos uma
+família.
+ConcreteFactory ( VisaCommunicatorFactory , MasterCardCommunicatorFactory )
+    Classe que implementa os métodos de criação dos objetos de uma família.
+AbstractProduct ( Issuer , Receiver )
+    Interface que define um tipo de produto.
+ConcreteProduct ( IssuerVisa , ReceiverVisa , IssuerMasterCard , ReceiverMAsterCard )
+    Implementação particular de um tipo de produto.
+AbstractFactoryImpl ( FactoryCommunicatorImpl )
+    Usa as interfaces AbstractFactory e AbstractProduct .
+Client ( Application )
+    Usa apenas AbstractFactoryImpl.
+
+
+Observação: Segundo o diagrama original o Client é finalizado usando as interfaces AbstractFactory e AbstractProduct porém fica com
+repetição de um pouco mais de código ao usar no construtor esse imports (IssuerCreator e ReceiverCreator) ao implementar FactoryCommunicator
+para cada um dos comunicadores das bandeiras.
+Coloquei uma classe de implementação a mais (AbstractFactoryImpl) para centralizar ali o código acima citado sendo ela a
+porta de entrada da aplicação (Client).
+Caso queira seguir o modelo 100% original, (Client no lugar de AbstractFactoryImpl), alterar a lógica nestes pontos citados.
+
+Ex:
+VisaCommunicatorFactory(
+    private val issuerCreator: IssuerCreator,
+    private val receiverCreator: ReceiverCreator
+) : FactoryCommunicator {
+
+   fun issuer(flag: Flag) : Issuer {
+        return if (flag == Flag.VISA) issuerCreator.create(flag)
+        else throw IllegalArgumentException("Illegal flag of communicator")
+    }
+
+   fun receiver(flag: Flag): Receiver {
+       return if (flag == Flag.VISA) receiverCreator.create(flag)
+       else throw IllegalArgumentException("Illegal flag of communicator")
+   }
+}
