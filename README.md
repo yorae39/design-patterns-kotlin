@@ -43,8 +43,8 @@ Conceitos de design patterns usando a linguagem kotlin
 - [X] Abstract Factory
 - [X] Abstract Factory + Factory Method
 - [X] Builder
-- [ ] Prototype
-- [ ] Singleton
+- [X] Prototype
+- [X] Singleton
 - [ ] Multiton
 - [ ] Object Pool
 - [ ] Adapter
