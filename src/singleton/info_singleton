@@ -1,0 +1,22 @@
+Objetivo: Permitir a criação de uma única instância de uma classe e fornecer um modo para
+recuperá-la.
+
+Suponha que estamos desenvolvendo um sistema que possui configurações globais obtidas a
+partir de um arquivo de propriedades. Essas configurações podem ser armazenadas em um objeto.
+Não desejamos que existam mais do que um objeto dessa classe ao mesmo tempo no sistema.
+
+
+Organização - Padrão Singleton:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+                        +-----------------+       <<user>>         +----------------------+
+                        |     Client      |<-----------------------|       Singleton      |
+                        +-----------------+                        +----------------------+
+                                                                   | static getInstance() |
+                                                                   +----------------------+
+
+
+O personagem desse padrão é:
+Singleton ( Configuration )
+    Classe que permite a criação de uma única instância e fornece um método estático para recuperá-la.

@@ -1,0 +1,49 @@
+Objetivo: Possibilitar a criação de novos objetos a partir da cópia de objetos existentes.
+
+Estamos desenvolvendo um sistema de anúncios semelhante ao do Google Adwords. Nesse sis-
+tema, os usuários poderão criar campanhas e configurá-las de acordo com as suas necessidades.
+Uma campanha é composta por diversas informações, entre elas:
+• Uma lista de anúncios.
+• O valor diário máximo que deve ser gasto pela campanha.
+• O valor máximo por exibição de anúncio.
+• As datas de início e término.
+
+Organização - Padrão Prototype:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+                            +----------------------+           <<use>>          +-------------------+
+                            |      Prototype       |<---------------------------|       Client      |
+                            +----------------------+                            +-------------------+
+                                        ^
+                                        |
+                                        |
+                                        |
+                     +-----------------------------------------+
+                     |                                         |
+                     |                                         |
+         +----------------------+                  +----------------------+
+         | ConcretePrototype 1  |                  | ConcretePrototype 2  |
+         +----------------------+                  +----------------------+
+         |  clone()             |                  | clone()              |
+         +----------------------+                  +----------------------+
+
+
+Os personagens desse padrão são:
+Prototype
+    Abstração dos objetos que possuem a capacidade de se auto copiar.
+ConcretePrototype ( Campaign )
+    Classe que define um tipo particular de objeto que pode ser clonado.
+Client
+    Classe que cria novos objetos a partir da interface definida por Prototype .
+
+
+
+
+
+
+
+
+
+
+
