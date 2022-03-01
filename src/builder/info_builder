@@ -1,0 +1,55 @@
+Objetivo: Separar o processo de construção de um objeto de sua representação e permitir a sua
+criação passo-a-passo. Diferentes tipos de objetos podem ser criados com implementações distintas de
+cada passo.
+
+Estamos desenvolvendo um sistema para gerar boletos bancários. No Brasil, a FEBRABAN (Federação Brasileira de Bancos)
+define regras gerais para os boletos. Contudo, cada instituição bancária define também as suas próprias regras específicas
+para o formato dos dados dos boletos.
+Segundo a FEBRABAN, os elementos principais relacionados a um boleto são:
+    Sacado           (Payer)         : Pessoa ou empresa responsável pelo pagamento do boleto.
+    Cedente          (Assignor)      : Pessoa ou empresa que receberá o pagamento do boleto.
+    Banco            (Bank)          : Instituição que receberá o pagamento do sacado e creditará o valor na conta do cedente.
+    Código de Barras (Barcode)       : Representação gráfica das informações do boleto.
+    Linha Digitável  (TypableLine)   : Representação numérica das informações do boleto.
+    Nosso Número     (OurNumber)     : Código de identificação do boleto utilizado pela instituição bancária e pelo cedente para
+                                       controle dos pagamentos.
+
+
+Organização - Padrão Builder:
+O diagrama abaixo ilustra a organização desse padrão.
+
+                                       +---------------+
++--------------+                       | <<interface>> |
+|   Director   |                       |    Builder    |
++--------------+<>=====================+---------------+
+|  construct() |                       | buildPartA()  |
++--------------+                       | buildPartB()  |                                                      +--------------+
+       ^                               +---------------+                                                      |    Product   |
+       |<<use>>                                ^                                                              +--------------+
+       |                                       |                                                                      ^
++--------------+                               |                                                                      |
+|    Client    |          +------------------------------------------+                                                |
++--------------+          |                                          |                                                |
+                          |                                          |                                    +-----------------------+
+               +---------------------+                   +---------------------+                          |                       |
+               |  ConcreteBuilder 1  |                   |  ConcreteBuilder 2  |     <<create>>    +--------------+       +--------------+
+               +---------------------+                   +---------------------+------------------>|  Product 2   |       |  Product 1   |
+               |   builderPartA()    |                   |   builderPartA()    |                   +--------------+       +--------------+
+               |   builderPartB()    |                   |   builderPartB()    |                                                  ^
+               +---------------------+                   +---------------------+                                                  |
+                          |                                                                                                       |
+                          |                                              <<create>>                                               |
+                          +-------------------------------------------------------------------------------------------------------+
+
+
+Os personagens desse padrão são:
+Product ( Billet )
+    Define os objetos que devem ser construídos pelos Builders .
+Builder ( BilletBuilder )
+    Interface que define os passos para a criação de um produto.
+ConcreteBuilder ( BBBilletBuilder, ItauBilletBuilder...)
+    Constrói um produto específico implementando a interface Builder .
+Director ( BilletGenerator )
+    Aciona os método de um Builder para construir um produto.
+
+
