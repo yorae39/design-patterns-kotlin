@@ -1,0 +1,58 @@
+Objetivo: Possibilitar o reaproveitamento de objetos.
+
+Considere a seguinte situação. Pretendemos ir a um restaurante sem ter, contudo, efetuado uma
+reserva. Ao chegar no restaurante, podemos nos deparar com duas situações: (i) há pelo menos uma
+mesa livre e podemos nos sentar ou (ii) todas as mesas estão ocupadas e precisamos esperar até que
+uma mesa seja liberada.
+Obviamente, a quantidade de mesas do restaurante é limitada. Além disso, o restaurante aco-
+moda um número máximo de pessoas por limitações físicas ou para seguir a legislação.
+
+Estamos desenvolvendo um sistema para uma empresa com uma quantidade muito grande de
+projetos. Esse sistema deve controlar os recursos utilizados nos projetos. De maneira genérica, um
+recurso pode ser um funcionário, uma sala, um computador, um carro, etc.
+
+
+Organização - Padrão Object Poll:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+    +-----------------+      <<use>>            +-------------------+
+    |     Client      |------------------------>|       Pool        |
+    +-----------------+                         +-------------------+
+                                                |   acquire()       |
+                                                |   release()       |
+                                                +-------------------+
+                                                          ^
+                                                          |
+                                                          |
+                                                          |
+                                      +------------------------------------------+
+                                      |                                          |
+                                      |                                          |
+                          +-----------------------+                  +-----------------------+
+                          |    ConcretePool1      |                  |    ConcretePool2      |
+                          +-----------------------+                  +-----------------------+
+                          |    acquire()          |                  |    acquire()          |
+                          |    release()          |                  |    release()          |
+                          +-----------------------+                  +-----------------------+
+                                    /\                                           /\
+                                    \/                                           \/
+                                     |                                            |
+                                     |                                            |
+                                     |                                            |
+                          +-----------------------+                  +-----------------------+
+                          |      Product 1        |                  |      Product 2        |
+                          +-----------------------+                  +-----------------------+
+
+
+Os personagens desse padrão são:
+Product ( Employee )
+    Define os objetos gerenciados pelos Pools .
+Pool ( Pool )
+    Interface dos objetos que controlam a aquisição e a liberação dos Products .
+ConcretePool ( EmployeePool )
+    Implementação particular de um Pool que gerencia um Product específico.
+
+
+
+

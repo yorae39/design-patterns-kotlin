@@ -6,6 +6,9 @@ número de temas é limitado e cada usuário poderá escolher o de sua preferên
 mentar os temas através de uma classe.
 
 
+Organização - Padrão Multiton:
+O diagrama abaixo ilustra a organização desse padrão.
+
 
                         +-----------------+       <<user>>         +------------------------+
                         |     Client      |<-----------------------|       Multiton         |
