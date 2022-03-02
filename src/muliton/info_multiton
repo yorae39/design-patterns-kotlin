@@ -1,0 +1,19 @@
+Objetivo: Permitir a criação de uma quantidade limitada de instâncias de determinada classe e
+fornecer um modo para recuperá-las.
+
+Estamos desenvolvendo uma aplicação que possuirá diversos temas para interface do usuário. O
+número de temas é limitado e cada usuário poderá escolher o de sua preferência. Podemos imple-
+mentar os temas através de uma classe.
+
+
+
+                        +-----------------+       <<user>>         +------------------------+
+                        |     Client      |<-----------------------|       Multiton         |
+                        +-----------------+                        +------------------------+
+                                                                   | static getInstance(id) |
+                                                                   +------------------------+
+
+O personagem desse padrão é:
+Multiton ( Theme )
+    Classe que permite a criação de uma quantidade limitada de instâncias e fornece um método
+    estático para recuperá-las.

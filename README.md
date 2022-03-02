@@ -45,7 +45,7 @@ Conceitos de design patterns usando a linguagem kotlin
 - [X] Builder
 - [X] Prototype
 - [X] Singleton
-- [ ] Multiton
+- [X] Multiton
 - [ ] Object Pool
 - [ ] Adapter
 - [ ] Bridge

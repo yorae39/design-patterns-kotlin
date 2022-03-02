@@ -4,7 +4,7 @@ data class Configuration(
     private val properties: Map<String, String>
 ) {
 
-    // AO USAR A PALAVRA RESERVADA (object) O COMPLIADOR CRIA UM CONSTRUTOR PRIVADO GARANTINDO O PADRÃO
+    // AO USAR A PALAVRA RESERVADA (object) O COMPILADOR CRIA UM CONSTRUTOR PRIVADO GARANTINDO O PADRÃO
     object Config {
         fun getInstance(properties: Map<String, String>): Configuration {
             return Configuration(properties)
