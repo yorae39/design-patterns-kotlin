@@ -1,0 +1,45 @@
+Objetivo: Agrupar objetos que fazem parte de uma relação parte-todo de forma a tratá-los sem
+distinção.
+
+
+Suponha que estamos desenvolvendo um sistema para calcular um caminho entre quaisquer
+dois pontos do mundo. Um caminho pode ser percorrido de diversas maneiras: à pé, de carro, de
+ônibus, de trem, de avião, de navio, etc.
+O sistema deve apresentar graficamente para os usuários as rotas que forem calculadas. Cada
+tipo de trecho deve ser apresentado de uma maneira específica. Por exemplo, se o trecho for de
+caminhada então deve aparecer na impressão da rota a ilustração de uma pessoa andando
+
+
+Organização - Padrão Composite:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+                     +--------------------+
+                     |   <<interface>>    |
+                     |     Component      |
+                     +--------------------+===========================+
+                     | operation()        |                           |
+                     +--------------------+                           |
+                                ^                                     |
+                                |                                     |
+                                |                                     |
+                 +-----------------------------+                      |
+                 |                             |                      |
+                 |                             |                      |
+       +-----------------+           +-----------------+              |
+       |      Leaf       |           |    Composite    |              |
+       +-----------------+           +-----------------+<>------------+
+       | operation()     |           | operation()     |
+       +-----------------+           | add()           |
+                                     | remove()        |
+                                     +-----------------+
+
+
+Os personagens desse padrão são:
+Component ( Stretch )
+    Interface que define os elementos da composição.
+Composite ( Route )
+    Define os Components que são formados por outros Components .
+Leaf ( StretchOnFoot, CarStretch )
+    Define os elementos básicos da composição, isto é, aqueles que não são
+    formados por outros Components

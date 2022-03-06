@@ -1,0 +1,48 @@
+Objetivo: Separar uma abstração de sua representação, de forma que ambos possam variar e pro-
+duzir tipos de objetos diferentes.
+
+Estamos desenvolvendo um sistema que deve gerar diversos tipos de documentos (recibos, ates-
+tados, comunicados, etc) em diversos formatos de arquivos (txt, html, pdf, etc).
+Podemos definir uma interface para padronizar os diversos tipos de documentos que o nosso
+sistema pode suportar.
+
+
+Organização - Padrão Bridger:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+    +---------------+   <<use>>     +-------------------+                  +--------------------+
+    |    Client     |-------------->|    Abstraction    |                  |     Implementor    |
+    +---------------+               +-------------------+<>================+--------------------+
+                                    |  operation()      |                  |  operationImpl()   |
+                                    +-------------------+                  +--------------------+
+                                              ^                                       ^
+                                              |                                       |
+                                              |                                       |
+                                    +--------------------+                            |
+                                    | RefinedAbstraction |                            |
+                                    +--------------------+                            |
+                                                                                      |
+                                                              +--------------------------------------------------+
+                                                              |                                                  |
+                                                              |                                                  |
+                                                              |                                                  |
+                                                 +------------------------+                         +------------------------+
+                                                 |  ConcreteImplementorA  |                         |  ConcreteImplementorB  |
+                                                 +------------------------+                         +------------------------+
+
+
+
+
+Abstraction ( Document )
+    Define a interface de um determinado tipo de objeto.
+RefinedAbstraction ( Receipt )
+    Uma implementação particular do Abstraction que delega a um Implementor a realização de
+    determindas tarefas.
+Implementor ( FileGenerator )
+    Define a interface dos objetos que serão acionados pelos Abstractions .
+ConcreteImplementor ( FileGeneratorTXT , FileGeneratorHTML ) uma implementação es-
+    pecífica do Implementor
+Client
+    Interage com as Abstractions .
+

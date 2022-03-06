@@ -1,0 +1,48 @@
+Objetivo: Permitir que um objeto seja substituído por outro que, apesar de realizar a mesma tarefa,
+possui uma interface diferente.
+
+Estamos realizando manutenção no sistema de gerenciamento de uma determinada empresa. O
+controle de ponto desse sistema possui diversas limitações. Essas limitações causam muitos
+prejuízos. Principalmente, prejuízos financeiros.
+Uma empresa parceira implementou uma biblioteca Java para controlar a entrada e saída dos
+funcionários. Essa biblioteca não possui as limitações que existem hoje no sistema que estamos
+realizando manutenção. Os diretores decidiram que a melhor estratégia seria adquirir essa biblioteca
+e implantá-la no sistema.
+Para implantar essa biblioteca, teremos que substituir as classes que atualmente cuidam do
+controle de ponto pelas classes dessa biblioteca. A complexidade dessa substituição é alta pois os
+métodos das classes antigas não são compatíveis com os métodos das classes novas. Em outras palavras,
+as interfaces são diferentes.
+
+
+Organização - Padrão Adapter:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+    +-----------------+    <<use>>        +-----------------+
+    |     Client      |------------------>|     Target      |
+    +-----------------+                   +-----------------+
+                                          | request()       |
+                                          +-----------------+
+                                                   ^
+                                                   |
+                                                   |
+                                                   |
+                                          +-----------------+
+                                          |     Adapter     |                 +-----------------+
+                                          +-----------------+---------------->|     Adapted     |
+                                          | request()       |                 +-----------------+
+                                          +-----------------+                 |specificRequest()|
+                                                                              +-----------------+
+
+Os personagens desse padrão são:
+Target ( CheckPoint )
+    Define a interface utilizada pelo Client .
+Adapted ( NewCheckPoint )
+    Classe que define o novo objeto a ser utilizado.
+Adapter ( CheckPointAdapter )
+    Classe que implementa a interface definida pelo Target e adapta as chamadas do Client para
+o Adapted.
+Client
+    Interage com os objetos através da interface definida por Target .
+
+

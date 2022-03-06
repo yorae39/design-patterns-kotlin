@@ -46,10 +46,10 @@ Conceitos de design patterns usando a linguagem kotlin
 - [X] Prototype
 - [X] Singleton
 - [X] Multiton
-- [ ] Object Pool
-- [ ] Adapter
-- [ ] Bridge
-- [ ] Composite
+- [X] Object Pool
+- [X] Adapter
+- [X] Bridge
+- [X] Composite
 - [ ] Decorator
 - [ ] Facade
 - [ ] Front Controller
