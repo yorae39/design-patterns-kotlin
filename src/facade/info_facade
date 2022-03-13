@@ -1,0 +1,36 @@
+Objetivo: Prover uma interface simplificada para a utilização de várias interfaces de um subsistema.
+
+
+Estamos melhorando um sistema que realiza todos os procedimentos que devem ser realizados
+após o registro de um pedido. Quando um pedido é realizado, o módulo que gerencia o estoque deve
+ser avisado para que o produto seja encaminhado ao endereço de entrega. O módulo financeiro deve
+ser avisado para que o processo de faturamento seja realizado. O módulo de pós venda também
+deve ser avisado para que contatos futuros sejam realizados com o cliente com o intuito de verificar
+a satisfação do mesmo com o produto obtido.
+O sistema já está funcionando e realiza todos os processos decorrentes da realização de um novo
+pedido, mas, queremos simplificar essa lógica encapsulando as chamadas aos módulos de estoque,
+financeiro e de pós venda.
+
+
+
+Organização - Padrão Facade:
+O diagrama abaixo ilustra a organização desse padrão.
+                                                                                         +----------------+
+                                                                              +--------->|  Component A   |
+                                                                              |          +----------------+
+                                                                              |
+        +----------------+        <<use>>        +----------------+  <<use>>  |          +----------------+
+        |     Client     |---------------------->|     Facade     |-----------+--------->|  Component B   |
+        +----------------+                       +----------------+           |          +----------------+
+                                                                              |
+                                                                              |          +----------------+
+                                                                              +--------->|  Component C   |
+                                                                                         +----------------+
+
+
+Os personagens desse padrão são:
+    Facade ( OrderFacade ) Classe intermediária que simplifica o acesso aos Component.
+Client
+    Classe que usa os Component de forma indireta através do Facade.
+Component ( Inventory , Financial , AfterSale )
+    Classes que compõem o subsistema.

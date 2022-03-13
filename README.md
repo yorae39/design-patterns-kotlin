@@ -50,8 +50,8 @@ Conceitos de design patterns usando a linguagem kotlin
 - [X] Adapter
 - [X] Bridge
 - [X] Composite
-- [ ] Decorator
-- [ ] Facade
+- [X] Decorator
+- [X] Facade
 - [ ] Front Controller
 - [ ] Flyweight
 - [ ] Proxy

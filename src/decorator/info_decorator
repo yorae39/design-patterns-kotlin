@@ -1,0 +1,60 @@
+Objetivo: Adicionar funcionalidade a um objeto dinamicamente.
+
+Como exemplo prático do padrão Factory Method, consideramos um sistema de envio de men-
+sagens. Nesse exemplo, definimos uma interface para padronizar os emissores.
+Agora, suponha que estejamos interessados em adicionar algumas funcionalidades no processo
+de envio de mensagem. Tais funcionalidades incluem criptografia e compressão das mensagens.
+Para não alterar as classes que definem os emissores, cada funcionalidade adicional (decoração)
+será implementada por um novo objeto (decorador).
+
+
+Organização - Padrão Decorator:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+                                             +------------------+
+                                             |  <<interface>>   |
+                                             |     Component    |
+                                             +------------------+================================+
+                                             | operation()      |                                |
+                                             +------------------+                                |
+                                                       ^                                         |
+                                                       |                                         |
+                                                       |                                         |
+                                                       |                                         |
+                                    +---------------------------------------+                    |
+                                    |                                       |                    |
+                                    |                                       |                    |
+                                    |                                       |                    |
+                        +---------------------+                 +---------------------+          |
+                        | ConcreteComponent   |                 |      Decorator      |          |
+                        +---------------------+                 +---------------------+<>--------+
+                        | operation()         |                 | operation()         |
+                        +---------------------+                 +---------------------+
+                                                                            ^
+                                                                            |
+                                                                            |
+                                                                            |
+                                                        +---------------------------------------+
+                                                        |                                       |
+                                                        |                                       |
+                                                        |                                       |
+                                            +---------------------+                 +---------------------+
+                                            | ConcreteDecoratorA  |                 | ConcreteDecoratorB  |
+                                            +---------------------+                 +---------------------+
+                                            | operation()         |                 | operation()         |
+                                            +---------------------+                 +---------------------+
+
+
+Os personagens desse padrão são:
+Component ( Issuer )
+    Define a interface de objetos que possuem determinada tarefa.
+ConcreteComponent ( BasicIssuer )
+    Implementação particular do Component .
+Decorator ( IssuerDecorator )
+    Classe abstrata que mantém uma referência para um Component e será utilizada
+    para padronizar os objetos decoradores.
+ConcreteDecorator ( IssuerDecoratorWithCryptographic , IssuerDecoratorWithCompression )
+    Implementação de um Decorator .
+
+
