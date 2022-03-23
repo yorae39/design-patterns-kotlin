@@ -53,7 +53,7 @@ Conceitos de design patterns usando a linguagem kotlin
 - [X] Decorator
 - [X] Facade
 - [X] Flyweight
-- [ ] Proxy
+- [X] Proxy
 - [ ] Command
 - [ ] Iterator
 - [ ] Mediator

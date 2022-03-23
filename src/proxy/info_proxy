@@ -1,0 +1,46 @@
+Objetivo: Controlar as chamadas a um objeto através de outro objeto de mesma interface.
+
+Estamos desenvolvendo uma aplicação bancária que deve registrar todas as operações realiza-
+das pelos objetos que representam as contas do banco. O registro das operações pode ser utilizado
+posteriormente em uma auditoria.
+Para manter o sistema mais coeso, não queremos implementar o registro das operações dentro
+dos objetos que representam as contas. A ideia é implementar essa lógica em objetos intermediários.
+Para preservar o modo de utilização das contas, podemos manter a interface nesses objetos intermediários.
+
+
+
+Organização - Padrão Proxy:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+                                          +---------------+
+    +---------------+       <<use>>       | <<interface>> |
+    |     Client    |-------------------->|    Subject    |
+    +---------------+                     +---------------+
+                                          |  request()    |
+                                          +---------------+
+                                                  ^
+                                                  |
+                                                  |
+                                                  |
+                               +-------------------------------------+
+                               |                                     |
+                               |                                     |
+                               |                                     |
+                       +---------------+                     +---------------+
+                       |    Proxy      |                     | RealSubject   |
+                       +---------------+                     +---------------+
+                       | request()     |                     | request()     |
+                       +---------------+                     +---------------+
+
+
+
+Os personagens desse padrão são:
+Subject ( Account )
+    Interface que padroniza RealSubject e Proxy .
+RealSubject ( DefaultAccount )
+    Define um tipo de objeto do domínio da aplicação.
+Proxy ( ProxyAccount )
+    Define os objetos que controlam o acesso aos RealSubjects.
+Client
+    Cliente que usa o RealSubject por meio do Proxy .
