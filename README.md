@@ -24,7 +24,7 @@ Conceitos de design patterns usando a linguagem kotlin
     * Composite
     * Decorator
     * Facade
-    * Front Controller - Não GoF
+    * Front Controller - Não GoF [NÃO SERÁ IMPLEMENTADO]
     * Flyweight
     * Proxy   
 * <u><b>Padrões comportamentais</b></u>
@@ -52,8 +52,7 @@ Conceitos de design patterns usando a linguagem kotlin
 - [X] Composite
 - [X] Decorator
 - [X] Facade
-- [ ] Front Controller
-- [ ] Flyweight
+- [X] Flyweight
 - [ ] Proxy
 - [ ] Command
 - [ ] Iterator

@@ -1,0 +1,59 @@
+Objetivo: Compartilhar, de forma eficiente, objetos que são usados em grande quantidade.
+
+
+Estamos desenvolvendo uma aplicação para gerenciar milhares de apresentações com slides.
+Essa aplicação disponibilizará um conjunto de temas que podem ser aplicados individualmente em
+cada slide de uma apresentação.
+Em geral, o conteúdo (título e texto) de cada slide é único. Portanto, não seria possível
+compartilhar de maneira eficiente o conteúdo de slides diferentes.
+Por outro lado, como vários slides podem utilizar o mesmo tema, eles poderiam compartilhar
+as informações relativas à formatação da fonte, cor de fundo, layout, e etc. Consequentemente, a
+quantidade de memória utilizada seria drasticamente reduzida.
+
+
+
+
+Organização - Padrão Facade:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+
+                                                                +--------------------+
+                    +--------------------+                      |    <<interface>>   |
+                    |  FlyweightFactory  |                      |      Flyweight     |
+                    +--------------------+<>--------------------+--------------------+
+                    | getFlyweight(id)   |                      | operation()        |
+                    +--------------------+                      +--------------------+
+                              ^                                             ^
+                              |                                             |
+                              |                                             |
+                              |                         +-----------------------------------------+
+                              |                         |                                         |
+                              |                         |                                         |
+                              |              +--------------------+                    +--------------------+
+                              |              | ConcreteFlyweight1 |                    | ConcreteFlyweight2 |
+                              |              +--------------------+                    +--------------------+
+                              |              | operation()        |                    | operation()        |
+                              |              +--------------------+                    +--------------------+
+                              |                         ^                                          ^
+    +----------------+        |    <<use>>              |                                          |
+    |     Client     |--------+-------------------------+------------------------------------------+
+    +----------------+
+
+
+
+Flyweight ( ThemeFlyweight )
+    Interface que define os objetos que serão compartilhados.
+ConcreteFlyweight ( ThemeHyphen , ThemeAsterisk , ThemeCorporate )
+    Tipo específico de Flyweight.
+FlyweightFactory ( ThemeFlyweightFactory )
+    Classe que controla a criação e recuperação de Flyweights.
+Client
+    Utiliza FlyweightFactory para recuperar os Flyweights.
+
+
+
+
+
+
+
