@@ -1,0 +1,60 @@
+Objetivo: Controlar as chamadas a um determinado componente, modelando cada requisição
+como um objeto. Permitir que as operações possam ser desfeitas, enfileiradas ou registradas.
+
+
+Estamos desenvolvendo um aplicativo para gerenciar playlists de música. Os usuários poderão
+selecionar as suas músicas favoritas e definir a ordem na qual elas devem ser reproduzidas. Um
+playlist é basicamente uma sequência de músicas. Contudo, o aplicativo pode adicionar, entre as
+músicas de um playlist, comandos para aumentar ou diminuir o volume de reprodução.
+Vamos utilizar uma biblioteca de áudio para desenvolver esse aplicativo. Através dessa biblio-
+teca, podemos tocar músicas e controlar o volume das saídas de áudio.
+
+
+Organização - Padrão Command:
+O diagrama abaixo ilustra a organização desse padrão.
+
+                                               +----------------+
+                                               |  <<interface>> |
+    +----------------+                         |     Command    |
+    |    Invoker     |<>=======================+----------------+
+    +----------------+                         | execute()      |
+            ^                                  +----------------+
+            |                                           ^
+            |                                           |
+            |                               +-------------------------+
+            |                               |                         |
+    +----------------+ <<create>> +------------------+      +------------------+
+    |    Client      |----------->| ConcreteCommand1 |      | ConcreteCommand2 |<----------------+
+    +----------------+            +------------------+      +------------------+                 |
+             |            +-----<>| execute()        |      | execute()        |<>-----+         |
+             |            |       +------------------+      +------------------+       |         |
+             |            |                                                            |         |
+             |            |                                                            |         |
+             |            +----------------------------+-------------------------------+         |
+             |                                         |                                         |
+             |                                         |                                         |
+             |                                         |                                         |
+             |                               +-------------------+                               |
+             |                               |     Receiver      |                               |
+             +-----------------------------> +-------------------+                               |
+             |      <<use>>                  | action1()         |                               |
+             |                               | action2()         |                               |
+             |                               +-------------------+                               |
+             |                                                                                   |
+             |                                     <<create>>                                    |
+             +-----------------------------------------------------------------------------------+
+
+
+
+
+Os personagens desse padrão são:
+Command ( Command )
+    Define uma interface para a execução dos métodos do Receiver .
+ConcreteCommand ( CommandMusicPlayer,TurnUpVolumeCommand, DecreaseVolumeCommand )
+    Classe que implementa Command e modela uma operação específica do Receiver .
+Invoker ( CommandList )
+    Classe que armazena os Commands que devem ser executados.
+Receiver ( Player )
+    Define os objetos que terão as chamadas aos seus métodos controladas.
+Client
+    Instancia os Commands associando-os ao Receiver e armazena-os no Invoker .
