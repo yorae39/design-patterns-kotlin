@@ -1,0 +1,44 @@
+Objetivo: Diminuir a quantidade de “ligações” entre objetos introduzindo um mediador, através
+do qual toda comunicação entre os objetos será realizada.
+
+
+Estamos desenvolvendo um sistema para controlar o fluxo de táxis e passageiros em um aero-
+porto. Os táxis disponíveis ficam a espera de passageiros em uma fila organizada pela ordem de
+chegada. Da mesma forma, os passageiros que desejam utilizar um táxi ficam em uma fila de espera
+que também é organizada pela ordem de chegada.
+Criaremos uma classe para modelar os passageiros, outra para os táxis e uma terceira para mediar
+a comunicação entre esses objetos.
+
+
+
+Organização - Padrão Mediator:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+                                    +--------------------+
+                                    |       Client       |
+                                    +--------------------+
+                                              |
+                                              |
+                                <<use>>       |       <<use>>
+                         +-------------------------------------------+
+                         |                                           |
+                         |                                           |
+                         v                                           v
+               +--------------------+     <<call>>        +--------------------+
+               |      Mediator      |<--------------------|     Colleague      |
+               |                    |-------------------->|                    |
+               +--------------------+    <<call>>         +--------------------+
+
+
+
+
+Os personagens desse padrão são:
+Mediator
+    Interface que padroniza as operações que serão chamadas pelos Colleagues.
+ConcreateMediator ( TaxiCenter )
+    Implementação particular do Mediator , que coordena a interação entre os Colleagues.
+Colleague
+    Possível interface para padronizar os ConcreateColleagues.
+ConcreateColleague ( Taxi , Passenger )
+    Classes que interagem entre si por meio do Mediator.

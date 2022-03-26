@@ -55,9 +55,9 @@ Conceitos de design patterns usando a linguagem kotlin
 - [X] Flyweight
 - [X] Proxy
 - [X] Command
-- [ ] Iterator
-- [ ] Mediator
-- [ ] Observer
+- [X] Iterator
+- [X] Mediator
+- [X] Observer
 - [ ] State
 - [ ] Strategy
 - [ ] Template Method

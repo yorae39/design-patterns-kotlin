@@ -1,0 +1,69 @@
+Objetivo: Fornecer um modo eficiente para percorrer sequencialmente os elementos
+de uma coleção, sem que a estrutura interna da coleção seja exposta.
+
+
+A maior parte das aplicações necessitam de estruturas de dados para organizar as informações
+armazenadas na memória. Cada estrutura estabelece um determinado conjunto de restrições
+relacionadas aos dados e disponibilizam operações eficientes para que possamos manipular as informações.
+Em geral, as plataformas de desenvolvimento de aplicações oferecem, através de bibliotecas,
+diversas estruturas de dados para facilitar o trabalho dos programadores. Por exemplo, na plataforma
+Java, as classes ArrayList, LinkedList, Vector, HashSet e TreeSet são exemplos de
+implementações disponíveis.
+Muitas vezes, é necessário percorrer todos os elementos de uma estrutura de dados para realizar
+uma determinada tarefa. A organização interna de cada estrutura é complexa e deve estar
+encapsulada nas classes que as implementam. Dessa forma, em geral, o desenvolvedor não teria
+as condições necessárias para percorrer os elementos da estrutura de dados utilizada.
+Podemos encapsular o processo de visitar cada elemento de uma estrutura de dados dentro dela
+mesma. Essa abordagem é interessante pois cada estrutura conhece a sua organização interna
+podendo, dessa forma, implementar esse processo da maneira mais eficiente.
+Na plataforma Java / Kotlin, as estruturas que possuem a capacidade de ter os seus elementos percorridos
+implementam uma interface que abstrai a ideia desse processo.
+Toda estrutura de dados que implementa a interface Iterable deve produzir objetos da interface Iterator.
+Os objetos da interface Iterator funcionam como guias que indicam o melhor “caminho”
+para visitar os elementos de uma determinada estrutura.
+Do ponto de vista do programador, a complexidade para percorrer os elementos de uma estrutura
+de dados está “escondida” dentro do iterator.
+
+
+Organização - Padrão Iterator:
+O diagrama abaixo ilustra a organização desse padrão.
+
+                    +------------------+                                                            +------------------+
+                    |    Aggregate     |     <<use>>        +----------------+     <<use>>          |     Iterator     |
+                    +------------------+<-------------------|     Client     |--------------------->+------------------+
+                    | createIterator() |                    +----------------+                      | next()           |
+                    +------------------+                                                            | hasNext()        |
+                             ^                                                                      +------------------+
+                             |                                                                                ^
+                             |                                                                                |
+                             |                                                                                |
+              +---------------------------+                                                     +---------------------------+
+              |                           |                                                     |                           |
+   +---------------------+    +---------------------+                                +---------------------+     +---------------------+
+   | ConcreteAggregate1  |    | ConcreteAggregate2  |                         +===+<>| ConcreteIterator1   |     | ConcreteIterator 2  |<>==+
+   +---------------------+    +---------------------+                         |      +---------------------+     +---------------------+    |
+            |   |                       |  |        <<create>>                |                |                              |             |
+            |   |                       |  +--------------------------------- | ----------------------------------------------+             |
+            |   |                       +==================================== | ============================================================+
+            |   +=============================================================+                |
+            |                            <<create>>                                            |
+            +----------------------------------------------------------------------------------+
+
+
+Os personagens desse padrão são:
+Iterator ( Iterator )
+    Define a interface dos objetos que encapsulam toda a complexidade para percorrer
+os elementos do Aggregate.
+ConcreteIterator
+    Implementação da interface Iterator para um tipo específico de Aggregate.
+Aggregate ( Iterable )
+    Define a interface das coleções de objetos que podem ter seus elementos
+percorridos através de um Iterator.
+ConcreteAggregate ( ArrayList , LinkedList , Vector , HashSet , TreeSet )
+    Estrutura de dados que implementa o Aggregate .
+
+
+
+
+
+

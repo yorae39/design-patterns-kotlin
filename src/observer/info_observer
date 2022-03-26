@@ -1,0 +1,45 @@
+Objetivo: Definir um mecanismo eficiente para reagir às alterações realizadas em determinados objetos.
+
+
+Estamos desenvolvendo um sistema para o mercado financeiro. Esse sistema deve manter todos
+os interessados em uma determinada ação informados do valor da mesma. Toda alteração no valor
+de uma ação deve ser informada aos seus respectivos interessados.
+
+
+Organização - Padrão Observer:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+
+                    +---------------------+             <<call>>                     +---------------------+
+                    |       Subject       |<-----------------------------------------|      Observer       |
+                    +---------------------+----------------------------------------->+---------------------+
+                    | attach(Observer)    |             <<call>>                     | update(Subject)     |
+                    | detach(Observer)    |                                          +---------------------+
+                    | getState()          |                                                     ^
+                    +---------------------+                                                     |
+                              ^                                                                 |
+                              |                                                                 |
+             +----------------------------------+                             +----------------------------------+
+             |                                  |                             |                                  |
+             |                                  |                             |                                  |
+   +--------------------+           +--------------------+         +--------------------+            +--------------------+
+   |  ConcreteSubject1  |           | ConcreteSubject2   |         | ConcreteObserver1  |            | ConcreteObserver2  |
+   +--------------------+           +--------------------+         +--------------------+            +--------------------+
+   | attach(Observer)   |           | attach(Observer)   |         | update(Subject)    |            | update(Subject)    |
+   | detach(Observer)   |           | detach(Observer)   |         +--------------------+            +--------------------+
+   | getState(Observer) |           | getState(Observer) |
+   +--------------------+           +--------------------+
+
+
+
+Os personagens desse padrão são:
+Observer ( ObserverStockExchangeAction )
+    Interface dos objetos interessados no estado dos Subjects.
+ConcreteObserver ( Broker )
+    Implementação particular de um Observer.
+Subject
+    Interface usada para padronizar os objetos que serão observados.
+ConcreteSubject ( StockExchangeAction )
+    Implementação de um Subject.
+
