@@ -38,7 +38,7 @@ Conceitos de design patterns usando a linguagem kotlin
     * Visitor
   
 ###
-### Padrões implementados até o momento
+### Padrões implementados
 - [X] Factory Method
 - [X] Abstract Factory
 - [X] Abstract Factory + Factory Method
