@@ -58,9 +58,9 @@ Conceitos de design patterns usando a linguagem kotlin
 - [X] Iterator
 - [X] Mediator
 - [X] Observer
-- [ ] State
-- [ ] Strategy
-- [ ] Template Method
+- [X] State
+- [X] Strategy
+- [X] Template Method
 - [X] Visitor
 
 ###

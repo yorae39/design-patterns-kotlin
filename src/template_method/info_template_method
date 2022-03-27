@@ -1,0 +1,50 @@
+Objetivo: Definir a ordem na qual determinados passos devem ser realizados na resolução de um
+problema e permitir que esses passos possam ser realizados de formas diferentes de acordo
+com a situação.
+
+
+Estamos desenvolvendo um sistema bancário e precisamos modelar os diversos tipos de contas
+do banco. Decidimos aplicar herança utilizando uma classe chamada Account.
+Toda operação bancária realizada gera a cobrança de uma taxa que é diferente para cada tipo da
+conta. Podemos tentar implementar um método para calcular essa taxa na classe Conta e chamá-lo
+a partir dos outros métodos.
+Contudo, nada pode ser definido no corpo do método calculateRate() na classe Account porque o
+cálculo é diferente para cada tipo de conta bancária. A solução é tornar o método abstrato para que
+ele seja implementado nas classes das contas específicas. Dessa forma, os métodos que chamam o
+calculateRate() dependem de um método que será implementado posteriormente.
+
+
+
+Organização - Padrão Template Method:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+
+                                    +-----------------------+
+                                    |     AbstractClass     |
+                                    +-----------------------+
+                                    | template()            |
+                                    | primitiveOperation1() |
+                                    | primitiveOperation2() |
+                                    +-----------------------+
+                                                ^
+                                                |
+                                                |
+                         +--------------------------------------------------+
+                         |                                                  |
+                         |                                                  |
+             +-----------------------+                         +-----------------------+
+             |    ConcreteClass1     |                         |    ConcreteClass2     |
+             +-----------------------+                         +-----------------------+
+             | primitiveOperation1() |                         | primitiveOperation1() |
+             | primitiveOperation2() |                         | primitiveOperation2() |
+             +-----------------------+                         +-----------------------+
+
+
+
+AbstractClass ( Account )
+    Classe abstrata que define os templates methods baseados em métodos abstratos que serão
+    implementados nas ConcreteClasses .
+ConcreteClass ( CheckingAccount , SavingAccount )
+    Classes concretas que implementam os métodos abstratos definidos pela AbstractClass e
+    que são utilizados pelos templates methods.

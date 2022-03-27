@@ -1,0 +1,53 @@
+Objetivo: Permitir de maneira simples a variação dos algoritmos utilizados na resolução de um
+determinado problema.
+
+Quando desejamos percorrer um trajeto entre dois pontos numa cidade, precisamos decidir qual
+caminho devemos seguir. Podem haver diversos caminhos entre dois pontos, o que pode tornar a
+escolha de um bom caminho um pouco difícil.
+Existem algumas aplicações que podem ajudar nessa tarefa, como é o caso do Google Maps, por
+exemplo. Normalmente, essas aplicações permitem que o usuário escolha a forma (à pé, de bicicleta,
+de carro, ou usando o transporte público) que deseja percorrer o caminho. Essa escolha afeta os
+passos para se chegar ao destino final.
+
+Uma tarefa muito comum no desenvolvimento de uma aplicação é ordenar uma lista de elementos.
+Em Ciência da Computação, foram desenvolvidos diversos algoritmos de ordenação.
+Podemos escolher o algoritmo mais apropriado de acordo com a situação.
+De qualquer forma, todos os algoritmos de ordenação devem produzir o mesmo resultado,
+podendo variar no consumo de memória e no tempo gasto para realizar a ordenação.
+Podemos definir uma interface para padronizar as diversas implementações dos algoritmos de ordenação
+e criar uma classe para cada algoritmo que vamos implementar.
+
+
+Organização - Padrão Strategy:
+O diagrama abaixo ilustra a organização desse padrão.
+
+
+
+                                         +--------------------+                      +----------------------+
+    +---------------+       <<use>>      |      Context       |                      |       Strategy       |
+    |    Client     |------------------->+--------------------+<>====================+----------------------+
+    +---------------+                    | contextInterface() |                      | algorithmInterface() |
+                                         +--------------------+                      +----------------------+
+                                                                                                  ^
+                                                                                                  |
+                                                                                                  |
+                                                                               +--------------------------------------+
+                                                                               |                                      |
+                                                                               |                                      |
+                                                                     +----------------------+             +----------------------+
+                                                                     |  ConcreteStrategyA   |             |  ConcreteStrategyB   |
+                                                                     +----------------------+             +----------------------+
+                                                                     | algorithmInterface() |             | algorithmInterface() |
+                                                                     +----------------------+             +----------------------+
+
+
+
+
+
+
+Strategy ( Sorter )
+    Interface para padronizar as diferentes estratégias de um algoritmo.
+ConcreteStrategy ( InsertionSorter , SelectionSorter )
+    Implementação particular de um Strategy .
+Context
+    Mantém uma referência para um objeto Strategy e pode permitir que esse acesse os seus dados.
